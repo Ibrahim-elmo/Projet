@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plats Marocains Incontournables</title>
+
+ 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #faf4ef;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+ 
+    header {
+      position: relative;
+      min-height: 600px;
+      color: #fff;
+      background: linear-gradient(to right, gray, orange);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 7%;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+    }
+
+    .navbar-logo {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+ 
+    .menu-icon {
+      display: none; 
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+      margin-left: auto;
+    }
+
+    .navbar-nav {
+      display: flex;
+      gap: 18px;
+      font-size: 15px;
+      margin-left: 20px;
+    }
+
+    .navbar-nav a {
+      color: #fdfdfd;
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    .navbar-nav a:hover {
+      background: #f4a261;
+      color: #1b1b1b;
+      transform: translateY(-1px);
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 7% 60px;
+      text-align: left;
+    }
+
+    .hero-kicker {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #ffd9a6;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      max-width: 520px;
+      color: #f6eee4;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* BOUTONS */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.2s, color 0.2s;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+ 
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 7% 70px;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 12px;
+      color: #b3501c;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: #5d534a;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+ 
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s, box-shadow 0.15s;
+      position: relative;
+    }
+
+    .card::before {
+      content: attr(data-rank);
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      font-size: 13px;
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+
+    .card-image {
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+      background-color: #f3e1cf;
+    }
+
+    .card.couscous .card-image {
+      background-image: url("../Images/couscous.jpg");
+    }
+    .card.tajine-citron .card-image {
+      background-image: url("../Images/Tajin de poulet.jpg");
+    }
+    .card.tajine-pruneaux .card-image {
+      background-image: url("../Images/Tajine viande.webp");
+    }
+    .card.harira .card-image {
+      background-image: url("../Images/harira.jpg");
+    }
+    .card.kefta .card-image {
+      background-image: url("../Images/tajine kefta.jpeg");
+    }
+    .card.pastilla .card-image {
+      background-image: url("../Images/pastilla.avif");
+    }
+    .card.rfissa .card-image {
+      background-image: url("../Images/rfissa.webp");
+    }
+    .card.zaalouk .card-image {
+      background-image: url("../Images/zaalouk.jpg");
+    }
+    .card.chermoula .card-image {
+      background-image: url("../Images/tanjia.webp");
+    }
+    .card.the .card-image {
+      background-image: url("../Images/thé.jpg");
+    }
+
+    .card-content {
+      padding: 18px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: #b3501c;
+    }
+
+    .card-tag {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #e07a5f;
+    }
+
+    .card-text {
+      font-size: 14px;
+      color: #554b46;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 13px;
+      color: #8d7a6d;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+    }
+
+ 
+    footer {
+      background: #f2cc8f;
+      border-top: 3px solid #e07a5f;
+      padding: 18px 7%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-weight: 500;
+      color: #8b4b1c;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+ 
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 10px 5%;
+      }
+
+      .navbar-logo {
+        font-size: 16px;
+      }
+
+ 
+      .menu-icon {
+        display: block;
+      }
+
+ 
+      .navbar-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        right: 5%;
+        top: 60px;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 10px 15px;
+        border-radius: 10px;
+        gap: 10px;
+      }
+
+      .navbar-nav a {
+        padding: 8px 4px;
+      }
+
+ 
+      .navbar-nav.active {
+        display: flex;
+      }
+
+      .hero-content {
+        padding: 60px 7% 40px;
+      }
+
+      .hero-title {
+        font-size: 32px;
+      }
+
+      .hero-subtitle {
+        max-width: 100%;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <header>
+    <nav class="navbar">
+      <div class="navbar-logo"><a href="index.html">Goûter le Maroc</a></div>
+
+      <button class="menu-icon" id="menu-icon" aria-label="Ouvrir le menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="navbar-nav" id="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="plats.html">Plats à goûter</a>
+        <a href="index.html#conseils">Conseils</a>
+        <a href="avis.html">Votre avis</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <div class="hero-kicker">Les 10 incontournables</div>
+      <h1 class="hero-title">Les plats marocains à ne pas rater</h1>
+      <p class="hero-subtitle">
+        Utilisez cette liste comme check-list pendant votre voyage :
+        combien de ces plats avez-vous déjà goûtés ?
+      </p>
+      <div class="hero-actions">
+        <a href="avis.html" class="btn btn-outline">Donner votre avis</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2 class="section-title">Top 10 des spécialités marocaines</h2>
+      <p class="section-subtitle">
+        Chaque plat est très courant dans les restaurants, riads ou chez l’habitant.
+        N’hésitez pas à montrer cette page au serveur si vous ne trouvez pas le plat sur la carte.
+      </p>
+
+      <div class="cards-grid">
+
+        <article class="card couscous" data-rank="#1">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <div class="card-tag">Incontournable</div>
+            <h3 class="card-title">Couscous</h3>
+            <p class="card-text">
+              Plat à base de semoule, de légumes et de viande (agneau, bœuf ou poulet).
+              Souvent servi le vendredi en famille.
+            </p>
+            <div class="card-meta">
+              <span>Idéal pour : déjeuner 🔥 Très populaire</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card tajine-citron" data-rank="#2">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <div class="card-tag">Saveurs citronnées</div>
+            <h3 class="card-title">Tajine de poulet au citron confit</h3>
+            <p class="card-text">
+              Poulet mijoté avec citron confit, olives et épices.
+              Un mélange de saveurs très parfumé typique du Maroc.
+            </p>
+            <div class="card-meta">
+              <span>Idéal pour : dîner 🍋 Doux & acidulé</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card tajine-pruneaux" data-rank="#3">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <div class="card-tag">Sucré-salé</div>
+            <h3 class="card-title">Tajine de viande aux pruneaux</h3>
+            <p class="card-text">
+              Tajine de bœuf ou d’agneau avec pruneaux, amandes et graines de sésame.
+              Un grand classique sucré-salé marocain.
+            </p>
+            <div class="card-meta">
+              <span>Idéal pour : dîner ⭐ Spécial occasions</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card harira" data-rank="#4">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <div class="card-tag">Soupe traditionnelle</div>
+            <h3 class="card-title">Harira</h3>
+            <p class="card-text">
+              Soupe à base de tomates, lentilles, pois chiches et épices.
+              Très consommée pendant le mois de Ramadan.
+            </p>
+            <div class="card-meta">
+              <span>Idéal pour : entrée 🥣 Réconfortant</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card kefta" data-rank="#5">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <div class="card-tag">Convivial</div>
+            <h3 class="card-title">Tajine de kefta (boulettes)</h3>
+            <p class="card-text">
+              Boulettes de viande hachée en sauce tomate, souvent servies avec des œufs.
+              Un plat généreux et très apprécié.
+            </p>
+            <div class="card-meta">
+              <span>Idéal pour : déjeuner 🍅 Riche en saveurs</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card pastilla" data-rank="#6">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <div class="card-tag">Spécialité de Fès</div>
+            <h3 class="card-title">Pastilla</h3>
+            <p class="card-text">
+              Feuilleté sucré-salé au pigeon ou au poulet, avec amandes et cannelle.
+              Croquant à l’extérieur, fondant à l’intérieur.
+            </p>
+            <div class="card-meta">
+              <span>Idéal pour : entrée / plat 🥧 Gastronomique</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card rfissa" data-rank="#7">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <div class="card-tag">Plat de fête</div>
+            <h3 class="card-title">Rfissa</h3>
+            <p class="card-text">
+              Poulet servi sur des msemen découpés, avec une sauce parfumée au fenugrec
+              et aux épices. Souvent préparé pour célébrer une naissance.
+            </p>
+            <div class="card-meta">
+              <span>Idéal pour : repas en famille 👪 Traditionnel</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card zaalouk" data-rank="#8">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <div class="card-tag">Entrée froide</div>
+            <h3 class="card-title">Zaalouk</h3>
+            <p class="card-text">
+              Salade d’aubergines et de tomates cuites avec de l’ail et des épices.
+              Servie tiède ou froide avec du pain.
+            </p>
+            <div class="card-meta">
+              <span>Idéal pour : entrée 🍆 Végétarien</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card chermoula" data-rank="#9">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <div class="card-tag">Le classique</div>
+            <h3 class="card-title">Tanjia</h3>
+            <p class="card-text">
+              Un plat délicat de viande fraîchement cuite au feu de bois
+            </p>
+            <div class="card-meta">
+              <span>Idéal pour : idéal pour les événements en plein air 🏕️</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card the" data-rank="#10">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <div class="card-tag">Symbole du Maroc</div>
+            <h3 class="card-title">Thé à la menthe</h3>
+            <p class="card-text">
+              Thé vert sucré avec de la menthe fraîche. Plus qu’une boisson,
+              c’est un symbole d’hospitalité marocaine.
+            </p>
+            <div class="card-meta">
+              <span>Idéal pour : toute la journée ☕ À ne pas rater</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2025 Guide de Cuisine Marocaine pour Voyageurs</div>
+    <div class="footer-links">
+      <a href="#top">Retour en haut</a>
+      <a href="index.html">Accueil</a>
+      <a href="avis.html">Votre avis</a>
+    </div>
+  </footer>
+
+  <script>
+    const menuIcon = document.getElementById('menu-icon');
+    const navLinks = document.getElementById('nav-links');
+
+    menuIcon.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
